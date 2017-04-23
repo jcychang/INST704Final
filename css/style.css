@@ -3,10 +3,19 @@
     font-size: 28px;
 }
 
-.ui-menu {
+/*.ui-menu {
     list-style-type: none;
 }
 
 .ui-menu-item {
     padding: 5px 0;
 }
+
+.ui-helper-hidden-accessible {
+    visibility: hidden;
+}
+
+.ui-autocomplete {
+    background-color:rgba(54, 25, 25, .5);
+    width: 100% !important;
+}*/
