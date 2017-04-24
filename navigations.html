@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>NavAR - Navigation</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Theme CSS -->
+	<link href="css/style.css" rel="stylesheet">
+
+	<!-- jQuery UI (for autocomplete) -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+
+<body>
+	<input id="hdnDirectionIteration" type="hidden" value="0" />
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top text-center">
+		<div style="padding-top:12px;">
+			<a class="navbar-brand" href="index.html">HCI HoloNav</a>
+			
+		</div>
+		
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h3>
+			Navigating to: <strong>The Courtyards</strong>
+		</h3>
+      </div>
+
+		<div id="divDirections" class="outer-border text-center" style="padding:20px;">
+			<div class="text-center" style="font-size:76px;">
+				<i id="iconDirection" class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></i>
+			</div>
+			<h2 id="hdrDirection">
+				Take a left from Stamp Student Union onto Campus Dr.
+			</h2>
+			<h3 id="hdrDistance">
+				50m
+			</h3>
+		</div>
+
+		<div id="divReached" class="outer-border text-center" style="padding:20px;display:none;">
+			<div class="text-center" style="font-size:76px; color:green;">
+				<i class="glyphicon glyphicon-ok-sign" aria-hidden="true"></i>
+			</div>
+			<h2>
+				You have reached your destination.
+			</h2>
+		</div>
+
+		<div class="text-center">
+  			<a id="lnkStop" href="index.html" class="btn btn-danger btn-lg">
+				  <i class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></i> Stop navigation
+			</a>
+			<a id="lnkFinish" href="index.html" class="btn btn-primary btn-lg" style="display: none;">
+				  <i class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></i> Finish
+			</a>
+		</div>
+		<br /><br />
+    </div>
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<!-- Theme JavaScript -->
+	<script src="js/main.js"></script>
+
+	<!-- jQuery UI (for autocomplete) -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script type="text/javascript">
+		$( function() {
+			$("#hdnDirectionIteration").val(0);
+
+			var availableTags = [
+			"Capital One Field at Maryland Stadium",
+			"Clarice Smith Performing Arts Center",
+			"Driskell Center",
+			"Eppley Recreation Center",
+			"Health Center",
+			"Memorial Chapel",
+			"M Square",
+			"Office of the Bursar",
+			"Office of the Registrar",
+			"Samuel Riggs IV Alumni Center",
+			"Adele H. Stamp Student Union",
+			"TerpZone",
+			"UMD Golf Course",
+			"Visitor Center",
+			"Xfinity Center"
+			];
+
+			$("#txtDestination").autocomplete({
+				source: availableTags
+			});
+
+			$("#divDirections").click(function() {
+				LoadDirection();
+			});
+		
+			LoadDirection();
+	});
+
+	function LoadDirection() {
+		var index = $("#hdnDirectionIteration").val();
+
+		var directions = [
+				new Direction("glyphicon glyphicon-circle-arrow-left", "Take a left from Stamp Student Union onto Campus Dr.", 50),
+				new Direction("glyphicon glyphicon-circle-arrow-right", "Take a right from UMD Art Gallery.", 30),
+				new Direction("glyphicon glyphicon-circle-arrow-up", "Go straight on University Blvd.", 300)
+			];
+
+		if(index == (directions.length)) {
+			ShowDestinationReached();
+			return;
+		}
+
+		var currentDirection = directions[index];
+
+		$("#iconDirection").attr("class", currentDirection.iconClass);
+		$("#hdrDirection").html(currentDirection.direction);
+		$("#hdrDistance").html(currentDirection.distance + "m");
+
+		$("#hdnDirectionIteration").val(++index);
+	}
+
+	function ShowDestinationReached() {
+		$("#divDirections").hide(200);
+		$("#divReached").show(400);
+		$("#lnkStop").hide();
+		$("#lnkFinish").show();
+	}
+
+	function Direction(icon, dir, dist) {
+		this.iconClass = icon;
+		this.direction = dir;
+		this.distance = dist
+	}
+  </script>
+</body>
+
+</html>
