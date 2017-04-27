@@ -37,7 +37,7 @@
 
       <div class="starter-template">
         <h3>
-			Navigating to: <strong>The Courtyards</strong>
+			Destination: <strong>Domain</strong>
 		</h3>
       </div>
 
@@ -89,28 +89,6 @@
 		$( function() {
 			$("#hdnDirectionIteration").val(0);
 
-			var availableTags = [
-			"Capital One Field at Maryland Stadium",
-			"Clarice Smith Performing Arts Center",
-			"Driskell Center",
-			"Eppley Recreation Center",
-			"Health Center",
-			"Memorial Chapel",
-			"M Square",
-			"Office of the Bursar",
-			"Office of the Registrar",
-			"Samuel Riggs IV Alumni Center",
-			"Adele H. Stamp Student Union",
-			"TerpZone",
-			"UMD Golf Course",
-			"Visitor Center",
-			"Xfinity Center"
-			];
-
-			$("#txtDestination").autocomplete({
-				source: availableTags
-			});
-
 			$("#divDirections").click(function() {
 				LoadDirection();
 			});
@@ -122,9 +100,27 @@
 		var index = $("#hdnDirectionIteration").val();
 
 		var directions = [
-				new Direction("glyphicon glyphicon-circle-arrow-left", "Take a left from Stamp Student Union onto Campus Dr.", 50),
-				new Direction("glyphicon glyphicon-circle-arrow-right", "Take a right from UMD Art Gallery.", 30),
-				new Direction("glyphicon glyphicon-circle-arrow-up", "Go straight on University Blvd.", 300)
+				new Direction("glyphicon glyphicon-circle-arrow-right", "Turn right onto Greenmead Dr.", ""),
+				new Direction("glyphicon glyphicon-circle-arrow-up", "Continue on Greenmead Dr. for 1 mile", "1 mile"),
+				new Direction("glyphicon glyphicon-circle-arrow-left", "From the left lane, turn left at Metzerott Rd.", "200 ft"),
+				new Direction("glyphicon glyphicon-circle-arrow-left", "Turn left onto the middle lane of Metzerott Rd.", ""),
+				new Direction("glyphicon glyphicon-circle-arrow-left", "Turn left onto the outermost lane of University Blvd.", "200 ft"),
+				new Direction("glyphicon glyphicon-circle-arrow-up", "Continue in the right lane for Route 1", ""),
+				new Direction("glyphicon glyphicon-share-alt", "In 200 ft, take a slight right onto Route 1 South", "200 ft"),
+				new Direction("glyphicon glyphicon-share-alt", "Take a slight right onto Route 1 South", ""),
+				new Direction("glyphicon glyphicon-circle-arrow-up", "Continue on Route 1 South for 1 mile", "1 mile"),
+				new Direction("glyphicon glyphicon-random", "Merge onto the outermost lane", ""),
+				new Direction("glyphicon glyphicon-random", "In 500 ft merge to the outermost lane turn onto Campus Dr.", "500 ft"),
+				new Direction("glyphicon glyphicon-random", "Merge to the outermost lane", ""),
+				new Direction("glyphicon glyphicon-circle-arrow-right", "Turn right onto Campus Dr.", ""),
+				new Direction("glyphicon glyphicon-circle-arrow-up", "Continue on Campus Dr. for 500 ft.", "500 ft"),
+				new Direction("glyphicon glyphicon-refresh", "At the roundabout, take the 2nd exit to continue onto Campus Dr.", ""),
+				new Direction("glyphicon glyphicon-circle-arrow-left", "In 200 ft, take a left turn to continue onto Campus Dr.", "200 ft"),
+				new Direction("glyphicon glyphicon-circle-arrow-left", "Take a left turn onto Campus Dr.", ""),
+				new Direction("glyphicon glyphicon-circle-arrow-right", "In 200 ft, take a right turn to continue onto Campus Dr.", "200 ft"),
+				new Direction("glyphicon glyphicon-circle-arrow-right", "Take a right turn onto Campus Dr.", ""),
+				new Direction("glyphicon glyphicon-refresh", "At the roundabout, take the 3rd exit onto Mowatt Ln.", ""),
+				new Direction("glyphicon glyphicon-share-alt", "Your destination is on your right", "")
 			];
 
 		if(index == (directions.length)) {
@@ -136,7 +132,13 @@
 
 		$("#iconDirection").attr("class", currentDirection.iconClass);
 		$("#hdrDirection").html(currentDirection.direction);
-		$("#hdrDistance").html(currentDirection.distance + "m");
+
+		if(currentDirection.distance !== "") {
+			$("#hdrDistance").html(currentDirection.distance);
+		}
+		else {
+			$("#hdrDistance").html("");
+		}
 
 		$("#hdnDirectionIteration").val(++index);
 	}

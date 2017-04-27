@@ -17,7 +17,7 @@
 
 .ui-autocomplete {
     background-color:rgba(54, 25, 25, .5);
-    width: 100% !important;
+    width: 100%;
 }
 
 
@@ -62,7 +62,6 @@
 
 .route-details {
 	margin-left: 3%;
-	float: left;
 }
 
 h2 {
