@@ -27,7 +27,11 @@
 <body>
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top text-center">
 		<div style="padding-top:12px;">
-      		<a class="navbar-brand" href="settings.html">HCI HoloNav</a>
+			<a href="javascript:" class="btn btn-default btn-sm" style="float: left;margin-left:20px;" onclick="GoBack();">
+				  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				  Back
+			</a>
+      		<a class="navbar-brand" href="index.html" style="margin-right:80px;">HCI HoloNav</a>
 		</div>
     </nav>
 
@@ -78,7 +82,7 @@
 					<br><hr style="border-width: 3px;">
 					<br>
 					
-					<h2 style="color: #337ab7">SIGNS</h2>
+					<h2 style="color: #337ab7">Signs</h2>
 					<form>
 						<h3 style="color: #33a5b7">a. Color:</h3>
 						<div class="radio" style="float: left; width: 30%;">
@@ -134,7 +138,7 @@
 					<br><hr style="border-width: 3px;">
 					<br>
 					
-					<h2 style="color: #337ab7">LANES</h2>
+					<h2 style="color: #337ab7">Lanes</h2>
 					<form>
 						<h3>Opacity:</h3>
 						
@@ -183,7 +187,11 @@
 	<!-- jQuery UI (for autocomplete) -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-	
+	<script type="text/javascript">
+		function GoBack() {
+			window.history.back();
+		}
+	</script>
 </body>
 
 </html>
